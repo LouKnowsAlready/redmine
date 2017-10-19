@@ -50,6 +50,7 @@ end
 # configuration file
 require 'erb'
 require 'yaml'
+=begin
 database_file = File.join(File.dirname(__FILE__), "config/database.yml")
 if File.exist?(database_file)
   database_config = YAML::load(ERB.new(IO.read(database_file)).result)
@@ -75,6 +76,13 @@ if File.exist?(database_file)
   end
 else
   warn("Please configure your config/database.yml first")
+end
+=end
+
+group :production do
+  # gems specifically for Heroku go here
+  #gem "pg", ">= 0.11.0" 
+  gem "mysql2", "~> 0.4.6", :platforms => [:mri, :mingw, :x64_mingw]
 end
 
 group :development do
